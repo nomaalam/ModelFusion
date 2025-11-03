@@ -2,6 +2,7 @@
 
 ModelFusion is an interactive Streamlit web application for exploring and comparing multiple classification models on your own datasets. Upload a CSV, select features and target, tune model hyperparameters, perform feature selection, visualize decision boundaries, and evaluate model performance—all in one place.
 
+**Deployed App:** https://modelfusion.streamlit.app/
 ## Features
 
 - **Upload CSV**: Easily upload your dataset for analysis.

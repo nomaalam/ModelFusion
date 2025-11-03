@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import streamlit as st
 
 def evaluate_model(model, X_train, y_train, X_test, y_test, model_name):
+    if X_train is None or y_train is None:
+        return None, None
+    
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
@@ -11,7 +14,7 @@ def evaluate_model(model, X_train, y_train, X_test, y_test, model_name):
     st.text("Classification Report")
     st.text(classification_report(y_test, y_pred))
 
-    f1 = f1_score(y_test, y_pred, average='weighted')
+    f1 = f1_score(y_test, y_pred, average='weighted', zero_division=0)
     st.metric(label=f"{model_name} F1 Score", value=round(f1, 3))
 
     cm = confusion_matrix(y_test, y_pred)

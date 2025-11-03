@@ -123,25 +123,26 @@ elif uploaded_file:
         
 
 
-        if st.sidebar.checkbox("Run 5-Fold Cross-Validation"):
-            cv_model_name = st.sidebar.selectbox("Select Model for Cross-Validation", ["KNN", "SVM", "Decision Tree", "Logistic Regression", "Random Forest"])
-            
-            if st.sidebar.button("▶ Run CV Now"):
-                if cv_model_name == "KNN":
-                    from models.knn_model import k_neighbors
-                    model = k_neighbors(params, return_model=True)
-                elif cv_model_name == "SVM":
-                    from models.svm_model import svm_classifier
-                    model = svm_classifier(params, return_model=True)
-                elif cv_model_name == "Decision Tree":
-                    from models.decision_tree_model import decision_tree
-                    model = decision_tree(params, return_model=True)
-                elif cv_model_name == "Logistic Regression":
-                    from models.log_reg_model import log_reg
-                    model = log_reg(params, return_model=True)
-                elif cv_model_name == "Random Forest":
-                    from models.random_forest_model import random_forest
-                    model = random_forest(params, return_model=True)
-                cross_validate_model(model, X[X_train_selected.columns], y)
+        if uploaded_file is not None and 'X_train_selected' in locals() and 'y' in locals():
+            if st.sidebar.checkbox("Run 5-Fold Cross-Validation"):
+                cv_model_name = st.sidebar.selectbox("Select Model for Cross-Validation", ["KNN", "SVM", "Decision Tree", "Logistic Regression", "Random Forest"])
+                
+                if st.sidebar.button("▶ Run CV Now"):
+                    if cv_model_name == "KNN":
+                        from models.knn_model import k_neighbors
+                        model = k_neighbors(params, return_model=True)
+                    elif cv_model_name == "SVM":
+                        from models.svm_model import svm_classifier
+                        model = svm_classifier(params, return_model=True)
+                    elif cv_model_name == "Decision Tree":
+                        from models.decision_tree_model import decision_tree
+                        model = decision_tree(params, return_model=True)
+                    elif cv_model_name == "Logistic Regression":
+                        from models.log_reg_model import log_reg
+                        model = log_reg(params, return_model=True)
+                    elif cv_model_name == "Random Forest":
+                        from models.random_forest_model import random_forest
+                        model = random_forest(params, return_model=True)
+                    cross_validate_model(model, X[X_train_selected.columns], y)
 
 
